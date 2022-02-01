@@ -19,4 +19,20 @@ describe("Event DAO specs", ()=>{
         expect(savedEvent.id).toBeTruthy()
     })
 
+    test("Find event by id", async ()=>{
+        const event:Event = {
+            id:"", 
+            location:"rooftop bar", 
+            startTime:0, endTime:0, 
+            title:"Test Event", 
+            desc:"Event for testing", 
+            status:"On Schedule"};
+        const savedEvent = await eventDao.createEvent(event);
+
+        const retrivedEvent = await eventDao.getEventById(savedEvent.id)
+        expect(savedEvent.location).toBe(retrivedEvent.location)
+
+
+    })
+
 })
