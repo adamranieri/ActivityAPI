@@ -11,30 +11,44 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-const eventDAO:EventDAO = new EventLocalDao()
-const eventService:EventService = new EventServiceImpl(eventDAO)
+const eventDAO: EventDAO = new EventLocalDao()
+const eventService: EventService = new EventServiceImpl(eventDAO)
 
 // get all events
-app.get("/events", (req,res)=>{
+app.get("/events", (req, res) => {
 
 });
 
-app.get("/events/:id", async (req, res)=>{
-    const {id} = req.params;
-    const event:Event = await eventService.retrieveEventById(id);
+app.get("/events/:id", async (req, res) => {
+    const { id } = req.params;
+    const event: Event = await eventService.retrieveEventById(id);
     res.send(event)
 })
 
-app.post("/events", (req,res)=>{
+app.post("/events", (req, res) => {
 
 });
 
-app.put("/events/:id", (req,res)=>{
+app.put("/events/:id", (req, res) => {
 
 })
 
-app.patch("/events/:id/cancel")
+app.patch("/events/:id/cancel", async (req, res) => {
+    const { id } = req.params;
+    const event: Event = {
+        id: id,
+        title: "",
+        desc: "",
+        startTime: 0,
+        endTime: 0,
+        location: "",
+        status: "Cancelled"
+    }
+    let updatedEvent = await eventService.updateEvent(event);
+    res.send(updatedEvent);
+})
 
 
 
-app.listen(3000, ()=> console.log("Hello"))
+
+app.listen(3000, () => console.log("Hello"))
