@@ -42,6 +42,7 @@ app.post("/events", (req,res)=>{
         res.status(400)
         res.send(error)
     }
+})
 
 app.put("/events/:id", (req, res) => {
 
