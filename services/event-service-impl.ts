@@ -15,15 +15,17 @@ export default class EventServiceImpl implements EventService {
     addEvent(event: Event): Promise<Event> {
         throw new Error("Method not implemented.");
     }
-    cancelEvent(id: string): Promise<Event> {
-        throw new Error("Method not implemented.");
-    }
-    async updateEvent(event: Event): Promise<Event> {
-        const foundEvent: Event = await this.retrieveEventById(event.id);
-        if (!foundEvent) {
-            throw new Error("Could not find Event with id" + event.id);
+    async cancelEvent(id: string): Promise<Event> {
+        let event: Event = await this.retrieveEventById(id);
+        if (!event) {
+            throw new Error("Could not find Event with id: " + id);
         }
-        return this.eventDAO.updateEvent(foundEvent);
+        event.status = "Cancelled";
+        const updatedEvent: Event = await this.updateEvent(event);
+        return updatedEvent;
+    }
+    updateEvent(event: Event): Promise<Event> {
+        throw new Error("Method not implemented.");
     }
 
 }

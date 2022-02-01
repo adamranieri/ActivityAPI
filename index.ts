@@ -34,18 +34,14 @@ app.put("/events/:id", (req, res) => {
 })
 
 app.patch("/events/:id/cancel", async (req, res) => {
-    const { id } = req.params;
-    const event: Event = {
-        id: id,
-        title: "",
-        desc: "",
-        startTime: 0,
-        endTime: 0,
-        location: "",
-        status: "Cancelled"
+    try {
+        const { id } = req.params;
+        let updatedEvent = await eventService.cancelEvent(id);
+        res.send(updatedEvent);
+    } catch (e) {
+        res.status(500);
+        res.send(e.message);
     }
-    let updatedEvent = await eventService.updateEvent(event);
-    res.send(updatedEvent);
 })
 
 
