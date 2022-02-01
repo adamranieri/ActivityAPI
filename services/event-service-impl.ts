@@ -13,7 +13,11 @@ export default class EventServiceImpl implements EventService{
         throw new Error("Method not implemented.");
     }
     addEvent(event: Event): Promise<Event> {
-        throw new Error("Method not implemented.");
+        const check =(event.endTime> event.startTime)
+        if(!check){ throw Error("invalid time input")}
+        event.status = "On Schedule";
+        const ReturnEvent = this.eventDAO.createEvent(event)
+        return ReturnEvent;
     }
     cancelEvent(id: string): Promise<Event> {
         throw new Error("Method not implemented.");

@@ -26,6 +26,15 @@ app.get("/events/:id", async (req, res)=>{
 })
 
 app.post("/events", (req,res)=>{
+    try {
+        const event:Event = req.body
+        eventService.addEvent(event)
+        res.status(201)
+        res.send()
+    } catch (error) {
+        res.status(400)
+        res.send(error)
+    }
 
 });
 
