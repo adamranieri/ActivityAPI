@@ -1,15 +1,15 @@
 import Event from "../entities/event"
 
-export default interface EventService{
+export default interface EventService {
 
-    retrieveEventById(id:string):Promise<Event>
+    retrieveEventById(id: string): Promise<Event>
 
-    retrieveAllEvents():Promise<Event[]>
+    retrieveAllEvents(): Promise<Event[]>
 
-    addEvent(event:Event):Promise<Event>
+    addEvent(event: Event): Promise<Event>
 
-    cancelEvent(id:string):Promise<Event>
+    cancelEvent(id: string): Promise<Event>
 
-    updateEvent(event:Event):Promise<Event>
+    updateEvent(event: Event): Promise<Event>
 
 }
