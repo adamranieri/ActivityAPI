@@ -6,10 +6,15 @@ import EventDAO from './daos/event-dao'
 import EventLocalDao from './daos/local-dao'
 import EventService from './services/event-service'
 import EventServiceImpl from './services/event-service-impl'
+import requestLogger from './middleware/request-logger'
+import { errorLogger } from 'express-winston'
 
 const app = express()
 app.use(express.json())
 app.use(cors())
+
+//Request logger
+app.use(requestLogger);
 
 const eventDAO:EventDAO = new EventLocalDao()
 const eventService:EventService = new EventServiceImpl(eventDAO)
@@ -35,6 +40,7 @@ app.put("/events/:id", (req,res)=>{
 
 app.patch("/events/:id/cancel")
 
+app.use(errorLogger)
 
 
 app.listen(3000, ()=> console.log("Hello"))
