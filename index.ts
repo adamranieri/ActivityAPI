@@ -31,9 +31,17 @@ app.get("/events/:id", async (req, res) => {
     res.send(event)
 })
 
-app.post("/events", (req, res) => {
 
-});
+app.post("/events", (req,res)=>{
+    try {
+        const event:Event = req.body
+        const ReturnEvent = eventService.addEvent(event)
+        res.status(201)
+        res.send(ReturnEvent);
+    } catch (error) {
+        res.status(400)
+        res.send(error)
+    }
 
 app.put("/events/:id", (req, res) => {
 
