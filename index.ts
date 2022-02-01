@@ -28,9 +28,9 @@ app.get("/events/:id", async (req, res)=>{
 app.post("/events", (req,res)=>{
     try {
         const event:Event = req.body
-        eventService.addEvent(event)
+        const ReturnEvent = eventService.addEvent(event)
         res.status(201)
-        res.send()
+        res.send(ReturnEvent);
     } catch (error) {
         res.status(400)
         res.send(error)
