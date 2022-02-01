@@ -10,13 +10,14 @@ export default class EventServiceImpl implements EventService {
         return this.eventDAO.getEventById(id)
     }
     retrieveAllEvents(): Promise<Event[]> {
-        throw new Error("Method not implemented.");
+        return this.eventDAO.getAllEvents()
     }
     addEvent(event: Event): Promise<Event> {
         const check =(event.endTime> event.startTime)
         if(!check){ throw Error("invalid time input")}
         event.status = "On Schedule";
         const ReturnEvent = this.eventDAO.createEvent(event)
+        
         return ReturnEvent;
     }
     async cancelEvent(id: string): Promise<Event> {
@@ -29,7 +30,7 @@ export default class EventServiceImpl implements EventService {
         return updatedEvent;
     }
     updateEvent(event: Event): Promise<Event> {
-        throw new Error("Method not implemented.");
+        return this.eventDAO.updateEvent(event)
     }
 
 }

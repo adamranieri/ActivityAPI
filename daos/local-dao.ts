@@ -5,8 +5,10 @@ import { v4 } from "uuid";
 
 export default class EventLocalDao implements EventDAO {
 
-    getAllEvents(): Promise<Event[]> {
-        throw new Error("Method not implemented.");
+    async getAllEvents(): Promise<Event[]> {
+        const buffer = await readFile('events.json')
+        const events: Event[] = JSON.parse(buffer.toString())
+        return events
     }
     async getEventById(id: string): Promise<Event> {
         const buffer = await readFile('events.json')
