@@ -10,12 +10,12 @@ const eventService:EventService = new EventServiceImpl(eventDAO)
 describe("Event DAO specs", () => { 
 
     it("Return all events", async () => {
-        const getEvents = await eventService.retrieveAllEvents();
+        const getEvents:Event[] = await eventService.retrieveAllEvents();
         expect(getEvents).toBeTruthy();
     })
 
     it("Return an event by ID", async () => {
-        const getEvent = await eventService.retrieveEventById("4121dfe8-ee09-4aef-81e7-ee5c4e366b94");
+        const getEvent:Event = await eventService.retrieveEventById("4121dfe8-ee09-4aef-81e7-ee5c4e366b94");
         expect(getEvent).toBeTruthy();
     })
 })
