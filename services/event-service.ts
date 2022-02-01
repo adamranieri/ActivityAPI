@@ -1,3 +1,4 @@
+import Event from "../entities/event"
 
 export default interface EventService{
 
