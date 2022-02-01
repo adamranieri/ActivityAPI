@@ -23,7 +23,7 @@ describe('test if events are valid',()=>{
         eventService.addEvent(event)
     })
 
-    it("should succesfully create",()=>{
+    it("should successfully create",()=>{
         const event:Event ={
             id: "",
             title: "",
