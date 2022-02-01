@@ -18,4 +18,4 @@ describe("Event DAO specs", () => {
         const getEvent = await eventService.retrieveEventById("4121dfe8-ee09-4aef-81e7-ee5c4e366b94");
         expect(getEvent).toBeTruthy();
     })
-}
+})
